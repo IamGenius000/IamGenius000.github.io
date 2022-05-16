@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>强国未完成人员</title>
+    <style>
+        html{
+            font-size: 10px;
+        }
+        *{
+        margin:0px;
+        padding: 0px;
+        list-style: none;
+        font-family: "微软雅黑";
+        text-decoration: none;
+    }
+        .textstyle{
+            width: 80%;
+            height: 20rem;
+            margin-top: 20px;
+            margin-left: 10%;
+            display: block;
+            border:1px silver solid;
+            border-radius: 20px;
+            background:rgba(230, 230, 230, 0.3);
+            padding-left: 7px;
+            padding-top: 7px;
+            
+        }
+        .query{
+            border-radius: 10px;
+            width: 50%;
+            height: 5rem;
+            margin-top: 20px;
+            margin-left: 25%;
+            background-color: #1296db;
+            border: 0px;
+            color:#e6e6e6;
+            font:bold;
+
+        }
+    </style>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <div id="app">
+       <textarea id="in" :class="{textstyle:true}" placeholder="请将接龙结果粘贴在此" v-model="shuru"></textarea>
+       <textarea id="out" :class="{textstyle:true}" placeholder="未完成接龙人员" v-text="out"></textarea>
+       <button :class="{query:true}" @click="query">查询</button>
+      </div>
+    <script>
+        var app=new Vue({
+            el:'#app',
+            data:{
+                out:"",
+                shuru:""
+            },
+            methods:{
+                query:function(){
+                    var formdata = this.shuru;
+				    var s1=new Array("姜良震","李岱莲","王守启","郝洪飞","田相峰","刘国栋","刘晓华","张涛","贾春锋","李政","明文涛","王彦堂","李秋萍","张国正","王怀虎","彭善磊","刘见华","王立坤"
+				    ,"张春蕾","姚佚","单永恒","张继中","杜莹","王瑞玉","刘冠良","刘家昊","马诚骏","任昆龙","徐扬","徐超","冯昌盛","彭久耀","迟晓军");
+				    var s2="";
+				    for (var i=0;i<s1.length;i++)
+				    {
+				        if(formdata.indexOf(s1[i].toString())==-1)
+				        {
+				            s2+=s1[i]+" ";
+				        }
+				    }
+				                if(s2=="")
+				                   {
+									this.out="今日打卡全部完成";
+								   }
+				                else
+				                    {
+										this.out=s2;
+									}
+                }
+            },
+        })
+    </script>
+
+</body>
+</html>
